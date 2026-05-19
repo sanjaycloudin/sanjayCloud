@@ -22,3 +22,11 @@ steps:
     azureSubscription: 'Azure-ServiceConnection'
     appName: 'devops-demo'
     package: '$(Build.ArtifactStagingDirectory)'
+- task: AzureRmWebAppDeployment@5
+  inputs:
+    ConnectionType: 'AzureRM'
+    appType: 'webAppLinux'
+    WebAppName: 'devops-demo'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'NODE|22-lts'
+    DeploymentTypeLinux: 'oneDeploy'
